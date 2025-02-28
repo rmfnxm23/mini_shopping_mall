@@ -24,7 +24,7 @@ window.onload = function () {
             </div>
             <div class="item_info">
               <div class="item_name">${product.name}</div>
-              <div class="item_price">${product.price}</div>
+              <div class="item_price">${product.price} 원</div>
               <div class="item_details">${product.details}</div>
               <div class="button_box">
                <button class="add_to_cart_btn" onclick="cart_click(number)">장바구니</button>

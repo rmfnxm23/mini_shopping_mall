@@ -76,7 +76,7 @@ window.onload = function () {
                     <td><img src="${x.img}" alt="Random Image"/></td>
                     <td>${x.name}</td>
                     <td>${x.quantity || 1}</td>
-                    <td>${x.price}</td>
+                    <td>${x.price} 원</td>
                     <td>
                       <button class="deleteButton" onclick="delete_btn_click('${
                         x.id
@@ -116,14 +116,17 @@ function calculate_total_price() {
 
   // 각 아이템의 가격 * 수량을 합산
   storage.forEach((item) => {
-    const item_total = item.price * (item.quantity || 1); // 수량이 없으면 1로 계산
+    // 가격의 콤마를 제거하고 숫자로 변환
+    const price = parseFloat(item.price.replace(/,/g, ""));
+
+    const item_total = price * (item.quantity || 1); // 수량이 없으면 1로 계산
     total_price += item_total;
   });
 
   // 합산된 금액을 #cal_price에 표시
   const cal_price = document.querySelector("#cal_price");
   if (cal_price) {
-    cal_price.innerText = total_price.toLocaleString(); // 천 단위로 구분하여 표시
+    cal_price.innerText = total_price.toLocaleString() + ` 원`; // 천 단위로 구분하여 표시
   }
 }
 

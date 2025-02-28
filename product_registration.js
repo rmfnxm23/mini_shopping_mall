@@ -15,6 +15,9 @@ window.onload = function () {
   // 테이블 만들기
   const inputtable = document.querySelector(".main_wrap");
   inputtable.innerHTML = `
+                        <div class="excel">
+                          <button id="excelDownload">CSV 다운로드</button>
+                        </div>
                         <table>
                             <thead>
                                 <tr>
@@ -150,7 +153,10 @@ function edit_btn_click(id) {
     // 테이블에 들어가 있는 innerText의 값을 input의 값으로 넣어줌
     // input 태그 아래에 div를 만듦
     cells[1].innerHTML = `<input type="text" value="${cells[1].innerText}" /><div id="text_name_${id}"></div>`; // Name
-    cells[2].innerHTML = `<input type="number" value="${cells[2].innerText}" /><div id="text_price_${id}"></div>`; // Price
+    cells[2].innerHTML = `<input type="number" value="${cells[2].innerText.replace(
+      /,/g,
+      ""
+    )}" /><div id="text_price_${id}"></div>`; // Price
     cells[3].innerHTML = `<input type="text" value="${cells[3].innerText}" /><div id="text_details_${id}"></div>`; // Details
 
     // '수정완료' 버튼 활성화/비활성화 조건
@@ -249,7 +255,7 @@ function edit_btn_click(id) {
           ...item,
           // 수정된 값만 반영
           name: updatedName.trim(),
-          price: updatedPrice.trim(),
+          price: Number(updatedPrice).toLocaleString().trim(),
           details: updatedDetails.trim(),
         };
       }
@@ -317,7 +323,7 @@ const save_btn_click = () => {
     id: id_input,
     img: `./images/${random_image}`,
     name: name_input,
-    price: price_input,
+    price: Number(price_input).toLocaleString(),
     details: details_input,
   };
   console.log(random_image);
@@ -386,6 +392,9 @@ const save_btn_click = () => {
     // 테이블 만들기
     const inputtable = document.querySelector(".main_wrap");
     inputtable.innerHTML = `
+                        <div class="excel">
+                          <button id="excelDownload">CSV 다운로드</button>
+                        </div>
                         <table>
                             <thead>
                                 <tr>
@@ -444,4 +453,57 @@ const check_button = () => {
     // 조건에 만족하지 않으면 disabled 속성을 추가
     document.getElementById("save_button").setAttribute("disabled", true);
   }
+};
+
+// CSV 다운로드 버튼 클릭 시
+document.getElementById("excelDownload").addEventListener("click", () => {
+  let filename = "ProductList.csv";
+  getCSV(filename);
+});
+
+// CSV 생성 함수
+const getCSV = (filename) => {
+  let csv = [];
+  let row = [];
+
+  // 1열에는 컬럼명
+  row.push("이름", "가격", "상세내용");
+  csv.push(row.join(","));
+
+  // 데이터 배열
+  storage.map((x) => {
+    row = [];
+    row.push(`"${x.name}","${x.price}","${x.details}"`);
+    csv.push(row.join(","));
+  });
+
+  //
+  downloadCSV(csv.join("\n"), filename);
+};
+
+// CSV 다운로드 함수
+const downloadCSV = (csv, filename) => {
+  let csv_file;
+  let download_link;
+
+  //한글 처리를 위해 BOM 추가하기
+  const BOM = "\uFEFF";
+  const csvBOM = BOM + csv; // BOM을 포함한 CSV 데이터
+
+  // CSV 파일 Blob 생성
+  csv_file = new Blob([csvBOM], { type: "text/csv" });
+
+  // 다운로드 링크 생성
+  download_link = document.createElement("a");
+  download_link.download = filename;
+  download_link.href = window.URL.createObjectURL(csv_file);
+
+  download_link.style.display = "none";
+  document.body.appendChild(download_link);
+
+  // 다운로드 클릭
+  download_link.click();
+
+  // URL 해제
+  window.URL.revokeObjectURL(download_link.href);
 };

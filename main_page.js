@@ -33,7 +33,7 @@ window.onload = function () {
           <img src="${x.img}" alt="card_image" /></a>
           <div class="product_info">
             <div class="product_name">${x.name}</div>
-            <div class="product_price">${x.price}</div>
+            <div class="product_price">${x.price} 원</div>
           </div>
         </div>`;
     })
