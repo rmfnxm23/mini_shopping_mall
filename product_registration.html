@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vintage Planner</title>
+    <link rel="stylesheet" href="header_footer.css" />
+    <link rel="stylesheet" href="product_registration.css" />
+  </head>
+  <body>
+    <!-- 아이템 등록 페이지 -->
+    <div id="header"></div>
+
+    <div class="board">
+      <div class="input_wrap">
+        <input
+          id="id_input"
+          placeholder="ID를 입력하세요."
+          type="number"
+        /><br />
+        <div id="text_id"></div>
+
+        <input
+          id="name_input"
+          placeholder="이름을 입력하세요."
+          type="text"
+        /><br />
+        <div id="text_name"></div>
+
+        <input
+          id="price_input"
+          placeholder="가격을 입력하세요."
+          type="number"
+        /><br />
+        <div id="text_price"></div>
+
+        <input
+          id="details_input"
+          placeholder="상세내용을 입력하세요."
+          type="text"
+        /><br />
+        <div id="text_details"></div>
+
+        <button id="save_button" onclick="save_btn_click()" disabled>
+          저장
+        </button>
+      </div>
+      <div class="main_wrap"></div>
+    </div>
+
+    <div id="footer"></div>
+  </body>
+
+  <script src="header_footer.js"></script>
+  <script src="product_registration.js"></script>
+</html>

@@ -1,0 +1,60 @@
+.main_product {
+  margin-top: 100px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* 5개 열로 구성 */
+  gap: 20px;
+  padding: 100px;
+}
+
+.product_card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+  text-align: center;
+  background-color: #f9f9f9;
+}
+
+.product_card img {
+  width: 100%;
+  height: auto;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 10px;
+}
+
+.product_details {
+  margin-top: 10px;
+}
+
+.product_name {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.product_price {
+  color: #888;
+  margin-top: 5px;
+}
+
+@media screen and (max-width: 1200px) {
+  .main_product {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .main_product {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .main_product {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .main_product {
+    grid-template-columns: 1fr;
+  }
+}

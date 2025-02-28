@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vintage Planner</title>
+    <link rel="stylesheet" href="product_registration.css" />
+    <link rel="stylesheet" href="shopping_cart.css" />
+  </head>
+  <body>
+    <!-- 장바구니 페이지 -->
+    <div id="header"></div>
+    <div class="main_container">
+      <div class="cart_text">장바구니</div>
+      <div id="cart_table"></div>
+      <div class="calculate_box">
+        <div class="calculate">
+          <div class="cal_total">총 결제 금액</div>
+          <div id="cal_price"></div>
+        </div>
+      </div>
+      <div class="delete_all" onclick="delete_all_click()">전체 삭제</div>
+    </div>
+    <div id="footer"></div>
+  </body>
+
+  <script src="header_footer.js"></script>
+  <script src="shopping_cart.js"></script>
+</html>

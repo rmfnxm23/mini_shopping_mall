@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="header_footer.css" />
+  </head>
+  <body>
+    <header>
+      <div class="header_left">
+        <div onclick="move_url('index')">
+          <img src="images/header_img/logo_icon.png" />
+        </div>
+      </div>
+      <div class="header_right">
+        <div class="login">
+          <img
+            src="images/header_img/login_icon.png"
+            alt="login"
+            onclick="alert_show()"
+          />
+        </div>
+        <div class="cart_icon" onclick="move_url('cart')">
+          <img
+            class="cart_img"
+            src="images/header_img/cart_icon.png"
+            alt="cart"
+          />
+          <div class="cart_count">0</div>
+        </div>
+      </div>
+    </header>
+  </body>
+  <script src="/header_footer.js"></script>
+</html>
